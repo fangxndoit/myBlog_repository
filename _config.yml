@@ -7,7 +7,7 @@ title: my blog
 subtitle:
 description:
 keywords:
-author: 是谁的小哥哥
+author: 哧溜
 language: zh-Hans
 timezone:
 
@@ -73,7 +73,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: next
+theme: ace
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
