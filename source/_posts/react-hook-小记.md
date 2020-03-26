@@ -168,8 +168,8 @@ class App extends Component{
     }
 }
 ```
-在类组件中我们可以直接将函数绑定到this对象上。在Hook组件中怎么解决呢？
-使用<font color="red"> useCallback </font>
+在类组件中我们可以直接将函数绑定到this对象上，
+但是在Hook上可以使用<font color="red"> useCallback </font>
 ``` bash
 // javascript
 function App(){
