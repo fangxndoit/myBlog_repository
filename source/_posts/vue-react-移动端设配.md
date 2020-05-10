@@ -59,8 +59,9 @@ const px2rem = require('postcss-px2rem')
 #### vue项目配置px2rem
 * 使用yarn 安装项目所需依赖后，安装 lib-flexible 、 postcss-px2rem 和 postcss-loader
 ``` bash
-  yarn add postcss-px2rem lib-flexible 
-  yarn add postcss-loader --dev
+  yarn add postcss-pxtorem lib-flexible 
+  yarn add amfe-flexible --dev
+  yarn add autoprefixer --dev
 ```
 * 在入口页面 index.html 中设置<meta>标签
 ``` bash
@@ -68,34 +69,29 @@ const px2rem = require('postcss-px2rem')
 ```
 * 然后在项目入口文件 index.js 中引入 lib-flexible
 ``` bash
-import 'lib-flexible/flexible.js';
+import 'amfe-flexible';
 ```
-* 在项目build目录下的 utils.js 中，将px2rem-loader 添加到cssLoaders中。通过搜索找到 generateLoaders 方法，在这里添加
+* 在vue.config.js中 添加以下代码
 ``` bash 
-exports.cssLoaders = function (options) {
-  /* 省略代码块 */
+const autoprefixer = require('autoprefixer')
+const pxtorem = require('postcss-pxtorem')
+const path = require('path')
 
-  const cssLoader = {
-    /* 省略代码块 */
-  }
-
-  /* 添加的代码块 */
-  const px2remLoader = {
-    loader: 'px2rem-loader',
-    options: {
-      remUnit: 37.5 // 基准大小 baseSize，设计稿宽度/10
+module.exports = {
+  css: {
+    loaderOptions: {
+      postcss: {
+        plugins: [
+          autoprefixer(),
+          pxtorem({
+            rootValue: 37.5,
+            propList: ['*']
+            // selectorBlackList: ['van']
+          })
+        ]
+      }
     }
   }
-  /* 添加的代码块 */
-  
-  // generate loader string to be used with extract text plugin
-  function generateLoaders (loader, loaderOptions) {
-    const loaders = [cssLoader, px2remLoader] // 添加px2remLoader
-    if (loader) {
-      /* 省略代码块 */
-    }
-
-    /* 省略代码块 */
 }
 ```
 #### 适用情况 & 不适用情况
