@@ -1,10 +1,10 @@
 ---
-title: css可选按钮
+title: css插件
 date: 2020-05-14 15:06:26
 tags: css
 ---
 
-#### css 可选按钮
+####  可选按钮
 
 
 
@@ -96,4 +96,22 @@ body {
 通过控制 i.regular 显示隐藏来实现选择与放弃
 
 [在线运行](https://jsfiddle.net/fire_flower/7e0g4jqn/16/)
+
+#### 箭头符号
+
+``` css
+.icon_right {
+  position: absolute;
+  border: solid #888888;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+```
+
+[在线运行]()
+
+#### 
 
