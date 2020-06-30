@@ -38,16 +38,30 @@ tags: css
 #### HTML
 
 ```html
-<div class='bouncing-loader'>
-	<div></div>
-  <div></div>
-  <div></div>
+<div class='mask'>
+  <div class='bouncing-loader'>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
 </div>
 ```
 
 
 
 ```css
+.mask{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.25);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .bouncing-loader{
 	display: flex;
   justify-content: center;
