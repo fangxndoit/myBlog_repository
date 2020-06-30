@@ -35,3 +35,48 @@ tags: css
 
 [在线运行](https://jsfiddle.net/fire_flower/0vnfL4eo/)
 
+#### HTML
+
+```html
+<div class='bouncing-loader'>
+	<div></div>
+  <div></div>
+  <div></div>
+</div>
+```
+
+
+
+```css
+.bouncing-loader{
+	display: flex;
+  justify-content: center;
+}
+
+.bouncing-loader > div {
+	width: 1rem;
+  height: 1rem;
+  border-radius: 1rem;
+  background: #8385aa;
+  margin: 3rem .2rem;
+  animation: bouncing-loader 0.6s infinite alternate;
+}
+
+.bouncing-loader > div:nth-child(2){
+	animation-delay: 0.2s;
+}
+.bouncing-loader > div:nth-child(3){
+	animation-delay: 0.4s;
+}
+
+@keyframes bouncing-loader{
+	to {
+		opacity: 0.1;
+    transform: translate3d(0, -1rem, 0);
+	}
+}
+
+```
+
+[在线运行](https://jsfiddle.net/fire_flower/5wo6maup/)
+
