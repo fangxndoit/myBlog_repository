@@ -231,3 +231,46 @@ methods: {
    -  `Vuex`的状态存储是响应式的。当`Vue`组件从`store`中读取状态的时候，若`store`中的状态发生变化，那么相应的组件也会高效更新。
    - 改变`store`中的状态的唯一途径就是显示地提交（`commit`）`mutation`。这样使得我们可以方便地追踪每一个状态的变化。
 
+#### **12.你用过`Vuex`吗？**
+
+`Vuex`是一个专门为`Vue.js`应用程序开发的状态管理模式。每一个`Vuex`应用的核心就是`store`（仓库）。`store`基本就是一个容器，它包含着应用中大部分的状态（`state`）
+
+1. `Vuex`的状态存储是响应式的。当`Vue`组件从`store`中读取状态的时候，若`store`中的状态发生变化，那么相应的组件也会高效更新。
+2. 改变`store`中的状态的唯一途径就是显示地提交（`commit`）`mutation`。这样使得我们可以方便地追踪每一个状态的变化。
+
+主要包含以下几个模块：
+
+- `State`：定义了应用状态的数据结构，可以在这里设置默认的初始状态。
+- `Getter`：允许组件从`Store`中获取数据，`mapGetters`辅助函数仅仅是将`store`中的`getter`映射到局部计算属性。
+- `Motation`：是唯一更改`store`中状态的方法，且必须是同步函数。
+- `Action`：用于提交`mutation`，而不是直接变更状态，可以包含任意异步操作。
+- `Module`：允许将单一的`Store`拆分为多个`store`且同时保存在单一的状态中。
+
+#### **13.`Vue`是如何实现数据双向绑定的？**
+
+`Vue`主要通过以下**4**步骤来实现数据双向绑定的：
+
+- 实现一个监听器`Observer`：对数据对象进行遍历，包括子属性对象的属性，利用`Object.defineProperty()`对属性都加上`setter`和`getter`。这样的话，给这个对象的某个值赋值，就会触发`setter`，那么就能监听到了数据变化。
+- 实现一个解析器`Compile`：解析`Vue`模板指令，将模版中的变量替换成数据，然后初始化渲染页面视图，并将每个指令对应的节点绑定更新函数，添加监听数据的订阅者，一旦数据有变动，收到通知，调用更新函数进行数据更新。
+- 实现一个订阅者`Watcher`：`Watcher`订阅者是`Observer`和`Compile`之间的通信桥梁，主要的任务是订阅`Observer`中的属性值变化的消息，当收到属性变化的消息时，触发解析器`Compile`中对应的更新函数。
+- 实现一个订阅器`Dep`：订阅器采用**发布-订阅**设计模式，用来收集订阅者`Watcher`，对监听器`Observer`和订阅者`Watcher`进行统一管理。
+
+#### **14.`Vue`框架怎么实现对象和数组的监听？**
+
+```javascript
+/**
+ * Observe a list of Array items.
+ */
+observeArray (items: Array<any>) {
+	for (let i = 0, l = items.length; i < l; i++) {
+  	observe(items[i])  // observe 功能为监测数据的变化
+  }
+}
+
+/**
+ * 对属性进行递归遍历
+ */
+ let childOb = !shallow && observe(val) // observe 功能为监测数据的变化
+```
+
+`Vue`框架通过遍历数组和递归遍历对象，从而达到利用`Object.difineProperty()`也能对对象和数组（部分方法的操作）进行监听。
