@@ -274,3 +274,24 @@ observeArray (items: Array<any>) {
 ```
 
 `Vue`框架通过遍历数组和递归遍历对象，从而达到利用`Object.difineProperty()`也能对对象和数组（部分方法的操作）进行监听。
+
+#### **15.`Proxy`与`Object.defineProperty`优劣对比**
+
+`Proxy`的优势如下：
+
+- `Proxy`可以直接监听对象和非属性；
+- `Proxy`可以直接监听数组的变化；
+- `Proxy`有多达13种拦截方法啊，不限于`appley、`ownKeys`、`delectProperty`、`has`等等是`Object.defineProperty`不具备的；
+- `Proxy`返回的是一个新对象，我们可以只操作新对象而达到目的，而`Object.defineProperty`只能遍历对象属性直接修改；
+- `Proxy`作为新标准受到浏览器厂商重点持续的性能优化，也就是传说中的新标准的性能红利。
+
+`Object.defineProperty`的优势如下：
+
+- 兼容性好，支持`IE9`，而`Proxy`存在浏览器兼容性问题，而且无法利用`polyfill`磨平。
+
+#### **15.虚拟`DOM`的实现原理?**
+
+- 用`javascript`对象模拟真实的`DOM`树，对真实的`DOM`进行抽象；
+- `diff`算法 -- 比较两颗虚拟`DOM`树的差异；
+- `pach`算法 -- 将两个虚拟`DOM`对象的差异应用到真正的`DOM`树
+
